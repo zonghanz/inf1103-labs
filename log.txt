@@ -1,0 +1,30 @@
+C:\Users\User\Desktop\Y1T1\Programming Fundamentals\INF1103-Labs>git log                
+commit b9a7750878c757b07a85f583b4cc8cd1285b1e60 (HEAD -> master)
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:46:38 2026 +0800
+
+    Not Fun
+
+commit f5d2a21ffeb4bf49b2f7a71e3e09f2a3cb913f0a
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:46:14 2026 +0800
+
+    Dynamic
+
+commit 3c6c20dcb5559b97ddb329ecdb88cdbd56e66f25
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:45:29 2026 +0800
+
+    Followers
+
+commit 92308ad3695f1303e3ee3f4b7c9578033a6966e9
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:44:58 2026 +0800
+
+    Personal information
+
+commit d55a929e74cff7591cce449b2fb76234822e22a2
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:30:20 2026 +0800
+
+    First Post

@@ -27,7 +27,9 @@ def calculate_tax(amount):
     tax = amount * 0.1
     return tax
 
-
+def generate_report(total_units, failed_attempts):
+    print("Total units processed: ", total_units, "\nTotal number of failed/rejected entries: ", failed_attempts)
+    return
 
     
 
@@ -35,7 +37,7 @@ def calculate_tax(amount):
 while loop:
     stock_quantity= get_valid_input()
     if (stock_quantity == "quit"):
-        print("Total units processed: ", inventory, "\nTotal number of failed/rejected entries: ", failed)
+        generate_report(inventory, failed)
         break
 
     elif (stock_quantity == None):

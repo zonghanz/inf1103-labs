@@ -8,8 +8,8 @@ def get_valid_input():
     if (stock_quantity == "quit"):
         return stock_quantity
     
-    elif (stock_quantity.isdigit() == False):
-        print("Enter an integer")
+    elif ((stock_quantity.isdigit() == False) & (stock_quantity != 0)):
+        print("Enter a positive integer that is not 0")
         return None
     
     elif (int(stock_quantity) < 0):

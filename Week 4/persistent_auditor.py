@@ -75,6 +75,7 @@ print_inventory(history)
 while loop:
     product_name, stock_quantity= get_valid_input()
     if (product_name == "quit" or stock_quantity == "quit"):
+        save_inventory(inventory, history)
         generate_report(inventory, failed)
         break
 
@@ -84,8 +85,8 @@ while loop:
     else: #user's value is valid
         inventory = process_delivery(inventory, stock_quantity)
         history = update_history(history, product_name, stock_quantity)
-        save_inventory(inventory, history)
         if inventory > 500:
             print("Alert! Overstock!")
+            save_inventory(inventory, history)
             break
 

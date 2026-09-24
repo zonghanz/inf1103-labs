@@ -1,2 +1,2 @@
-123
-[1001, "Wireless Mouse", 2]
+4
+[[1001, 'Wireless Mouse', 1], [1002, 'table', 3]]

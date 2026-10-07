@@ -1,0 +1,95 @@
+commit 578555f70fc5c697ede607c3db42aada935ccecb
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 00:52:09 2026 +0800
+
+    Lab 4 save_inventory verified 2
+
+commit 53c3f1b11dc7a50525628cee7ff927e2ef315969
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 00:46:15 2026 +0800
+
+    Lab 4 save_inventory verified
+
+commit ed571cf5c2d9208cb07103342cb40115e4bda1d9
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 00:44:23 2026 +0800
+
+    Lab 4 List is Tracking History
+
+commit 12a3711de31b071541fc2efaacc2875afc071a95
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Thu Sep 24 23:49:49 2026 +0800
+
+    load_inventory working
+
+commit 57c535c996cf49cfc8f8582826ecfd481b6148c2
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 22 17:40:13 2026 +0800
+
+    Lab 3 Requirement 4
+
+commit cab22227fce04854c0a816cdf693b7727d1e005c
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 22 17:39:33 2026 +0800
+
+    Lab 3 Requirement 3
+
+commit 1555fec428cab5dfdee59b6ab06157e8da27ecc3
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 22 16:28:30 2026 +0800
+
+    Lab 3 Requirement 2
+
+commit d4f188c3d5ddb84cf00240c961b6357a32e2fd00
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 22 16:21:38 2026 +0800
+
+    Lab 3 Requirement 1
+
+commit b8046608bc141441be87e9ba0479e552613b4e7e
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 15 18:52:22 2026 +0800
+
+    End of Run Your Custom Container
+
+commit 4202b2e065b1753667ae8b4286c3f38a7c871b02
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Tue Sep 15 17:20:43 2026 +0800
+
+    Week 2
+
+commit b9a7750878c757b07a85f583b4cc8cd1285b1e60
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:46:38 2026 +0800
+
+    Not Fun
+
+commit f5d2a21ffeb4bf49b2f7a71e3e09f2a3cb913f0a
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:46:14 2026 +0800
+
+    Dynamic
+
+commit 3c6c20dcb5559b97ddb329ecdb88cdbd56e66f25
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:45:29 2026 +0800
+
+    Followers
+
+commit 92308ad3695f1303e3ee3f4b7c9578033a6966e9
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:44:58 2026 +0800
+
+    Personal information
+
+commit d55a929e74cff7591cce449b2fb76234822e22a2
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:30:20 2026 +0800
+
+    First Post
+
+commit 745df7e1688cdac351eee6ca6b98c40256ceaf26
+Author: Haw Zong Han <2601880@sit.singaporetech.edu.sg>
+Date:   Fri Sep 4 15:03:36 2026 +0800
+
+    Personal info ig

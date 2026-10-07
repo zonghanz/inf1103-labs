@@ -1,5 +1,22 @@
 import ast
+inventory = [
+    {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
+    {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
+    {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
+]
+
+
 # ===== Functions =====
+def show_menu():
+    print("----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+ 
 def get_valid_input():
     product_name = input("\nEnter Product Name. Enter 'quit' to exit:")
     if (product_name == "quit"):

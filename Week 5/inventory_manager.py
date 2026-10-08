@@ -36,6 +36,40 @@ def load_inventory():
     print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
     return []
 
+def find_product(inventory, product_id):
+    """Return the product dict with the given ID (case-insensitive), or None."""
+    for product in inventory:
+        if product["id"].lower() == product_id.lower():
+            return product
+    return None
+
+def add_product(inventory):
+    print("Add New Product")
+    product_id = input("Product ID: ").strip().upper()
+    if not product_id:
+        print("Product ID cannot be empty.")
+        return
+    if find_product(inventory, product_id):
+        print("A product with that ID already exists.")
+        return
+    name = input("Product Name: ").strip()
+
+    if not name:
+        print("Product name cannot be empty.")
+        return
+    try:
+        price = float(input("Price: "))
+        stock = int(input("Stock Quantity: "))
+    except ValueError:
+        print("Invalid number entered. Product not added.")
+        return
+    if price < 0 or stock < 0:
+        print("Price and stock cannot be negative. Product not added.")
+        return
+    inventory.append({"id": product_id, "name": name,
+                      "price": price, "stock": stock})
+    print("Product added successfully!")
+
 
  #=== Old ===
 def get_valid_input():
@@ -87,6 +121,7 @@ def main():
         if choice == "1":
             return;
         elif choice == "2":
+            add_product(inventory)
             return;
         elif choice == "3":
             return;

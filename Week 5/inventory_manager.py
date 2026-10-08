@@ -7,14 +7,14 @@ LINE = "-" * 48
 
 # ===== Functions =====
 def show_menu():
-    print("----------- MENU -----------")
+    print("\n----------- MENU -----------")
     print("1. Display All Products")
     print("2. Add Product")
     print("3. Update Stock")
     print("4. Search Product")
     print("5. Save Inventory")
     print("6. Exit")
-    print("----------------------------")
+    print("----------------------------\n")
 
 def load_inventory():
     """Load inventory from JSON if the file exists, else return an empty list."""
@@ -34,9 +34,9 @@ def load_inventory():
 def save_inventory(inventory, on_exit=False):
     """Write the inventory list to JSON."""
     if on_exit:
-        print("Saving inventory before exit...")
+        print("\nSaving inventory before exit...")
     else:
-        print("Saving inventory...")
+        print("\nSaving inventory...")
     with open(INVENTORY_FILE, "w") as f:
         json.dump(inventory, f, indent=4)
     if on_exit:
@@ -52,7 +52,7 @@ def find_product(inventory, product_id):
     return None
 
 def display_all(inventory):
-    print("Current Inventory")
+    print("\nCurrent Inventory")
     print(LINE)
     if not inventory:
         print("No products in inventory.")
@@ -62,7 +62,7 @@ def display_all(inventory):
     print(LINE)
 
 def add_product(inventory):
-    print("Add New Product")
+    print("\nAdd New Product")
     product_id = input("Product ID: ").strip().upper()
     if not product_id:
         print("Product ID cannot be empty.")
@@ -89,7 +89,7 @@ def add_product(inventory):
     print("Product added successfully!")
 
 def update_stock(inventory):
-    print("Update Stock")
+    print("\nUpdate Stock")
     product_id = input("Enter Product ID: ").strip()
     product = find_product(inventory, product_id)
     if product is None:
@@ -110,7 +110,7 @@ def update_stock(inventory):
     print("Stock updated successfully!")
 
 def search_product(inventory):
-    print("Search Product")
+    print("\nSearch Product")
     product_id = input("Enter Product ID: ").strip()
     product = find_product(inventory, product_id)
     if product is None:
@@ -123,45 +123,6 @@ def search_product(inventory):
     print(f"Price: ${product['price']:.2f}")
     print(f"Stock: {product['stock']}")
     print(LINE)
-
-
-
- #=== Old ===
-def get_valid_input():
-    product_name = input("\nEnter Product Name. Enter 'quit' to exit:")
-    if (product_name == "quit"):
-        return product_name, None
-    
-    stock_quantity = input("Enter stock quantity. Enter 'quit' to exit:")
-    if (stock_quantity == "quit"):
-        return None, stock_quantity
-    
-    elif (stock_quantity.isdigit() == False):
-        print("Enter a positive integer")
-        return None, None
-    
-    elif (int(stock_quantity) == 0):
-        print("Enter a value greater than 0")
-        return None, None
-    
-    else:
-        return product_name, int(stock_quantity)
-
-
-def update_history(history, product_name, stock_quantity):
-    if history == []:
-        newEntry = [1001, product_name, stock_quantity]
-        history.append([1001, product_name, stock_quantity])
-        print("\nNew Order Added:")
-        print(*newEntry, sep=", ")
-        return history
-    else:
-        latest_index = history[-1][0]
-        newEntry = [latest_index + 1, product_name, stock_quantity]
-        history.append(newEntry)
-        print("\nNew Order Added:")
-        print(*newEntry, sep=", ")
-        return history
 
 
 def main():

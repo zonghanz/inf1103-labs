@@ -70,6 +70,29 @@ def add_product(inventory):
                       "price": price, "stock": stock})
     print("Product added successfully!")
 
+def update_stock(inventory):
+    print("Update Stock")
+    product_id = input("Enter Product ID: ").strip()
+    product = find_product(inventory, product_id)
+    if product is None:
+        print("Product not found.")
+        return
+    print("Product Found:")
+    print(f"Name: {product['name']}")
+    print(f"Current Stock: {product['stock']}")
+    try:
+        new_stock = int(input("New Stock Quantity: "))
+    except ValueError:
+        print("Invalid number entered. Stock not updated.")
+        return
+    if new_stock < 0:
+        print("Stock cannot be negative. Stock not updated.")
+        return
+    product["stock"] = new_stock
+    print("Stock updated successfully!")
+
+
+
 
  #=== Old ===
 def get_valid_input():
@@ -122,9 +145,8 @@ def main():
             return;
         elif choice == "2":
             add_product(inventory)
-            return;
         elif choice == "3":
-            return;
+            update_stock(inventory)
         elif choice == "4":
             return;
         elif choice == "5":

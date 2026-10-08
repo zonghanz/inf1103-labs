@@ -109,6 +109,20 @@ def update_stock(inventory):
     product["stock"] = new_stock
     print("Stock updated successfully!")
 
+def search_product(inventory):
+    print("Search Product")
+    product_id = input("Enter Product ID: ").strip()
+    product = find_product(inventory, product_id)
+    if product is None:
+        print("Product not found.")
+        return
+    print("Product Found")
+    print(LINE)
+    print(f"ID: {product['id']}")
+    print(f"Name: {product['name']}")
+    print(f"Price: ${product['price']:.2f}")
+    print(f"Stock: {product['stock']}")
+    print(LINE)
 
 
 
@@ -166,7 +180,7 @@ def main():
         elif choice == "3":
             update_stock(inventory)
         elif choice == "4":
-            return;
+            search_product(inventory)
         elif choice == "5":
             save_inventory(inventory, on_exit=True)
         elif choice == "6":
@@ -179,30 +193,4 @@ def main():
 
 
 # ===== Main Program =====
-# inventory, history = load_inventory()
-loop = True
-failed = 0
-# print_inventory(history)
-
 main();
-
-
-
-# while loop:
-#     product_name, stock_quantity= get_valid_input()
-#     if (product_name == "quit" or stock_quantity == "quit"):
-#         save_inventory(inventory, history)
-#         generate_report(inventory, failed)
-#         break
-
-#     elif (stock_quantity == None):
-#         failed += 1
-
-#     else: #user's value is valid
-#         inventory = process_delivery(inventory, stock_quantity)
-#         history = update_history(history, product_name, stock_quantity)
-#         if inventory > 500:
-#             print("Alert! Overstock!")
-#             save_inventory(inventory, history)
-#             break
-

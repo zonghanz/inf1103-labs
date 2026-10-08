@@ -1,9 +1,13 @@
 import ast
+import json
+import os
+INVENTORY_FILE = "inventory.json"
 inventory = [
     {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
     {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
     {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
 ]
+
 
 
 # ===== Functions =====
@@ -16,7 +20,24 @@ def show_menu():
     print("5. Save Inventory")
     print("6. Exit")
     print("----------------------------")
- 
+
+def load_inventory():
+    """Load inventory from JSON if the file exists, else return an empty list."""
+    if os.path.exists(INVENTORY_FILE):
+        print(f"{INVENTORY_FILE} found.")
+        try:
+            with open(INVENTORY_FILE, "r") as f:
+                inventory = json.load(f)
+            print("Inventory loaded successfully.")
+            return inventory
+        except (json.JSONDecodeError, OSError):
+            print("File could not be read. Starting with an empty inventory.")
+            return []
+    print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
+    return []
+
+
+ #=== Old ===
 def get_valid_input():
     product_name = input("\nEnter Product Name. Enter 'quit' to exit:")
     if (product_name == "quit"):
@@ -37,32 +58,6 @@ def get_valid_input():
     else:
         return product_name, int(stock_quantity)
 
-def process_delivery(current_total, new_value):
-    new_total = current_total + new_value
-    return new_total
-
-def calculate_tax(amount):
-    tax = amount * 0.1
-    return tax
-
-def generate_report(total_units, failed_attempts):
-    print("Total units processed: ", total_units, "\nTotal number of failed/rejected entries: ", failed_attempts)
-    return
-
-def load_inventory():
-    try:
-        with open("inventory.txt", "r") as file:
-            inventory = int(file.readline())
-            history = ast.literal_eval(file.readline())
-            return inventory, history
-    except FileNotFoundError:
-        return 0, []
-
-def save_inventory(inventory, history):
-    with open("inventory.txt", "w") as file:
-        file.write(str(inventory) + "\n")
-        file.write(str(history) + "\n")
-        print("\nOrder successfully saved to inventory.txt")
 
 def update_history(history, product_name, stock_quantity):
     if history == []:
@@ -79,33 +74,59 @@ def update_history(history, product_name, stock_quantity):
         print(*newEntry, sep=", ")
         return history
 
-def print_inventory(history):
-    print("Current Orders: \n")
-    for transaction in history:
-        print(*transaction, sep=", ")
-    return
+
+def main():
+    print("=" * 40)
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("=" * 40)
+    inventory = load_inventory()
+ 
+    while True:
+        show_menu()
+        choice = input("Enter option: ").strip()
+        if choice == "1":
+            return;
+        elif choice == "2":
+            return;
+        elif choice == "3":
+            return;
+        elif choice == "4":
+            return;
+        elif choice == "5":
+            return;
+        elif choice == "6":
+            print("Thank you for using Inventory Management System.")
+            print("Program terminated.")
+            break
+        else:
+            print("Invalid option. Please enter a number from 1 to 6.")
+
 
 # ===== Main Program =====
-inventory, history = load_inventory()
+# inventory, history = load_inventory()
 loop = True
 failed = 0
-print_inventory(history)
+# print_inventory(history)
 
-while loop:
-    product_name, stock_quantity= get_valid_input()
-    if (product_name == "quit" or stock_quantity == "quit"):
-        save_inventory(inventory, history)
-        generate_report(inventory, failed)
-        break
+main();
 
-    elif (stock_quantity == None):
-        failed += 1
 
-    else: #user's value is valid
-        inventory = process_delivery(inventory, stock_quantity)
-        history = update_history(history, product_name, stock_quantity)
-        if inventory > 500:
-            print("Alert! Overstock!")
-            save_inventory(inventory, history)
-            break
+
+# while loop:
+#     product_name, stock_quantity= get_valid_input()
+#     if (product_name == "quit" or stock_quantity == "quit"):
+#         save_inventory(inventory, history)
+#         generate_report(inventory, failed)
+#         break
+
+#     elif (stock_quantity == None):
+#         failed += 1
+
+#     else: #user's value is valid
+#         inventory = process_delivery(inventory, stock_quantity)
+#         history = update_history(history, product_name, stock_quantity)
+#         if inventory > 500:
+#             print("Alert! Overstock!")
+#             save_inventory(inventory, history)
+#             break
 

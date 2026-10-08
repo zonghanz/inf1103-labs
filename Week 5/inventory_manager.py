@@ -2,12 +2,7 @@ import ast
 import json
 import os
 INVENTORY_FILE = "inventory.json"
-inventory = [
-    {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
-    {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
-    {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25}
-]
-
+LINE = "-" * 48
 
 
 # ===== Functions =====
@@ -36,12 +31,35 @@ def load_inventory():
     print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
     return []
 
+def save_inventory(inventory, on_exit=False):
+    """Write the inventory list to JSON."""
+    if on_exit:
+        print("Saving inventory before exit...")
+    else:
+        print("Saving inventory...")
+    with open(INVENTORY_FILE, "w") as f:
+        json.dump(inventory, f, indent=4)
+    if on_exit:
+        print("Inventory saved successfully.")
+    else:
+        print(f"Inventory saved successfully to {INVENTORY_FILE}.")
+
 def find_product(inventory, product_id):
     """Return the product dict with the given ID (case-insensitive), or None."""
     for product in inventory:
         if product["id"].lower() == product_id.lower():
             return product
     return None
+
+def display_all(inventory):
+    print("Current Inventory")
+    print(LINE)
+    if not inventory:
+        print("No products in inventory.")
+    for p in inventory:
+        print(f"ID: {p['id']} | Name: {p['name']} | "
+              f"Price: ${p['price']:.2f} | Stock: {p['stock']}")
+    print(LINE)
 
 def add_product(inventory):
     print("Add New Product")
@@ -150,8 +168,9 @@ def main():
         elif choice == "4":
             return;
         elif choice == "5":
-            return;
+            save_inventory(inventory, on_exit=True)
         elif choice == "6":
+            save_inventory(inventory, on_exit=True)
             print("Thank you for using Inventory Management System.")
             print("Program terminated.")
             break

@@ -14,7 +14,7 @@ def show_menu():
     print("4. Search Product")
     print("5. Save Inventory")
     print("6. Exit")
-    print("----------------------------")
+    print("---------------------------")
 
 def load_inventory():
     """Load inventory from JSON if the file exists, else return an empty list."""

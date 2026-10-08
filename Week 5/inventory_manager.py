@@ -31,19 +31,6 @@ def load_inventory():
     print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
     return []
 
-def save_inventory(inventory, on_exit=False):
-    """Write the inventory list to JSON."""
-    if on_exit:
-        print("Saving inventory before exit...")
-    else:
-        print("Saving inventory...")
-    with open(INVENTORY_FILE, "w") as f:
-        json.dump(inventory, f, indent=4)
-    if on_exit:
-        print("Inventory saved successfully.")
-    else:
-        print(f"Inventory saved successfully to {INVENTORY_FILE}.")
-
 def find_product(inventory, product_id):
     """Return the product dict with the given ID (case-insensitive), or None."""
     for product in inventory:

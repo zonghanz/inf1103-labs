@@ -9,7 +9,6 @@ INVENTORY_FILE = "inventory.json"
 
 # ===== File Handling =====
 def load_inventory():
-    """Load products from JSON into an Inventory object. Returns an empty Inventory on failure."""
     inventory = Inventory()
     if not os.path.exists(INVENTORY_FILE):
         print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
@@ -30,7 +29,6 @@ def load_inventory():
 
 
 def save_inventory(inventory, on_exit=False):
-    """Write all products in the inventory to JSON."""
     print("\nSaving inventory before exit..." if on_exit else "\nSaving inventory...")
     data = [product.to_dict() for product in inventory.get_products()]
     with open(INVENTORY_FILE, "w") as f:
@@ -51,6 +49,33 @@ def show_menu():
     print("5. Save Inventory")
     print("6. Exit")
     print("----------------------------\n")
+
+
+def add_product(inventory):
+    print("\nAdd New Product")
+    product_id = input("Product ID: ").strip().upper()
+    if not product_id:
+        print("Product ID cannot be empty.")
+        return
+    if inventory.search_product(product_id):
+        print("A product with that ID already exists.")
+        return
+    name = input("Product Name: ").strip()
+    if not name:
+        print("Product name cannot be empty.")
+        return
+    try:
+        price = float(input("Price: "))
+        stock = int(input("Stock Quantity: "))
+    except ValueError:
+        print("Invalid number entered. Product not added.")
+        return
+    if price < 0 or stock < 0:
+        print("Price and stock cannot be negative. Product not added.")
+        return
+
+    inventory.add_product(Product(product_id, name, price, stock))
+    print("Product added successfully!")
 
 
 def update_stock(inventory):

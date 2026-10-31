@@ -19,6 +19,7 @@ def load_inventory():
         with open(INVENTORY_FILE, "r") as f:
             data = json.load(f)
         for item in data:
+            # Adds stored inventory.json objects into inventory class list
             inventory.add_product(
                 Product(item["id"], item["name"], item["price"], item["stock"]))
         print("Inventory loaded successfully.")

@@ -1,10 +1,10 @@
 LINE = "-" * 48
 
-
+# SRP: An Inventory is responsible for managing a collection of Products.
 class Inventory:
 
     def __init__(self):
-        self.__products = []
+        self.__products = [] # stores a collection of product objects
 
     def add_product(self, product):
         if self.search_product(product.product_id) is not None:

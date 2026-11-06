@@ -1,7 +1,8 @@
 LINE = "-" * 48
+from abc import ABC, abstractmethod
 
 
-class Product:
+class Product(ABC):
     # Represents and manages a single product (SRP: one product's data and state).
 
     def __init__(self, product_id, name, price, stock):
@@ -39,11 +40,16 @@ class Product:
         print(f"Name: {self.__name}")
         print(f"Price: ${self.__price:.2f}")
         print(f"Stock: {self.__stock}")
-        print(LINE)
 
     def to_dict(self):
         return {"id": self.__product_id, "name": self.__name,
                 "price": self.__price, "stock": self.__stock}
+
+
+    # ----- Abstract behaviour: every subclass MUST implement this -----
+    @abstractmethod
+    def get_fulfilment_info(self):
+        pass
 
     def __str__(self):
         return (f"ID: {self.__product_id} | Name: {self.__name} | "

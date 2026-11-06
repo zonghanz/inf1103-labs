@@ -3,6 +3,8 @@ import os
 
 from product import Product
 from inventory import Inventory
+from physicalproduct import PhysicalProduct
+from digitalproduct import DigitalProduct
 
 INVENTORY_FILE = "inventory.json"
 
@@ -119,6 +121,10 @@ def main():
     print("INVENTORY MANAGEMENT SYSTEM")
     print("=" * 40)
     inventory = load_inventory()
+
+    print('hi')
+    product = PhysicalProduct("1", "zonghan", 1, 2, 66)
+    product.display_information()
 
     while True:
         show_menu()

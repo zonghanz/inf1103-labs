@@ -1,12 +1,25 @@
 import json
 import os
 
-from product import Product
 from inventory import Inventory
 from physicalproduct import PhysicalProduct
 from digitalproduct import DigitalProduct
+from canbeshipped import CanBeShipped
 
 INVENTORY_FILE = "inventory.json"
+
+
+# ===== Product creation from saved data =====
+def product_from_dict(item):
+    # Uses the "type" identifier to build the correct subclass.
+    kind = item["type"]
+    if kind == "physical":
+        return PhysicalProduct(item["id"], item["name"], item["price"],
+                               item["stock"], item["weight"])
+    if kind == "digital":
+        return DigitalProduct(item["id"], item["name"], item["price"],
+                              item["stock"], item["download_size"])
+    raise ValueError(f"Unknown product type: {kind}")
 
 
 # ===== File Handling =====
@@ -21,11 +34,9 @@ def load_inventory():
         with open(INVENTORY_FILE, "r") as f:
             data = json.load(f)
         for item in data:
-            # Adds stored inventory.json objects into inventory class list
-            inventory.add_product(
-                Product(item["id"], item["name"], item["price"], item["stock"]))
+            inventory.add_product(product_from_dict(item))
         print("Inventory loaded successfully.")
-    except (json.JSONDecodeError, OSError, KeyError, TypeError):
+    except (json.JSONDecodeError, OSError, KeyError, TypeError, ValueError):
         print("File could not be read. Starting with an empty inventory.")
         return Inventory()
     return inventory
@@ -56,6 +67,14 @@ def show_menu():
 
 def add_product(inventory):
     print("\nAdd New Product")
+    print("Product type:")
+    print("1. Physical")
+    print("2. Digital")
+    product_type = input("Choose type (1/2): ").strip()
+    if product_type not in ("1", "2"):
+        print("Invalid product type. Product not added.")
+        return
+
     product_id = input("Product ID: ").strip().upper()
     if not product_id:
         print("Product ID cannot be empty.")
@@ -70,14 +89,22 @@ def add_product(inventory):
     try:
         price = float(input("Price: "))
         stock = int(input("Stock Quantity: "))
+        if product_type == "1":
+            extra = float(input("Weight (kg): "))
+        else:
+            extra = float(input("Download size (MB): "))
     except ValueError:
         print("Invalid number entered. Product not added.")
         return
-    if price < 0 or stock < 0:
-        print("Price and stock cannot be negative! Product not added.")
+    if price < 0 or stock < 0 or extra < 0:
+        print("Values cannot be negative! Product not added.")
         return
 
-    inventory.add_product(Product(product_id, name, price, stock))
+    if product_type == "1":
+        product = PhysicalProduct(product_id, name, price, stock, extra)
+    else:
+        product = DigitalProduct(product_id, name, price, stock, extra)
+    inventory.add_product(product)
     print("Product added successfully!")
 
 
@@ -113,6 +140,10 @@ def search_product(inventory):
         return
     print("Product Found")
     product.display_information()
+    print(product.get_fulfilment_info())
+    # Only products that implement CanBeShipped have a shipping cost.
+    if isinstance(product, CanBeShipped):
+        print(f"Shipping Cost: ${product.calculate_shipping_cost():.2f}")
 
 
 # ===== Main Program =====
@@ -121,10 +152,6 @@ def main():
     print("INVENTORY MANAGEMENT SYSTEM")
     print("=" * 40)
     inventory = load_inventory()
-
-    print('hi')
-    product = PhysicalProduct("1", "zonghan", 1, 2, 66)
-    product.display_information()
 
     while True:
         show_menu()

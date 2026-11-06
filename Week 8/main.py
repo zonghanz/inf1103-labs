@@ -72,7 +72,7 @@ def add_product(inventory):
         print("Invalid number entered. Product not added.")
         return
     if price < 0 or stock < 0:
-        print("Price and stock cannot be negative. Product not added.")
+        print("Price and stock cannot be negative! Product not added.")
         return
 
     inventory.add_product(Product(product_id, name, price, stock))

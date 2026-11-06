@@ -19,6 +19,12 @@ class DigitalProduct(Product):
         print(f"Download Size: {self.__download_size}MB")
         print(LINE)
 
+    def to_dict(self):
+        data = super().to_dict()
+        data["type"] = "digital"
+        data["download_size"] = self.__download_size
+        return data
+
     # ----- Abstract method -----
     def get_fulfilment_info(self):
         return "This product is delivered digitally via download link."

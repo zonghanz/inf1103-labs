@@ -1,32 +1,7 @@
 [
-    {
-        "id": "P001",
-        "name": "Laptop",
-        "price": 1200.0,
-        "stock": 15
-    },
-    {
-        "id": "P002",
-        "name": "Mouse",
-        "price": 25.5,
-        "stock": 50
-    },
-    {
-        "id": "P003",
-        "name": "Keyboard",
-        "price": 45.0,
-        "stock": 25
-    },
-    {
-        "id": "P004",
-        "name": "Desk",
-        "price": 100.0,
-        "stock": 5
-    },
-    {
-        "id": "P005",
-        "name": "Chair",
-        "price": 15.0,
-        "stock": 1
-    }
+    {"id": "P001", "name": "Laptop", "price": 1200.0, "stock": 15, "type": "physical", "weight": 2.1},
+    {"id": "P002", "name": "Mouse", "price": 25.5, "stock": 50, "type": "physical", "weight": 0.1},
+    {"id": "P003", "name": "Keyboard", "price": 45.0, "stock": 25, "type": "physical", "weight": 0.8},
+    {"id": "P004", "name": "Photo Editor", "price": 99.0, "stock": 100, "type": "digital", "download_size": 450.0},
+    {"id": "P005", "name": "E-Book Bundle", "price": 15.0, "stock": 200, "type": "digital", "download_size": 35.5}
 ]

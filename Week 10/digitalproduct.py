@@ -10,12 +10,12 @@ class DigitalProduct(Product):
         super().__init__(product_id, name, price, stock, supplier)
         self.__download_size: float = download_size
 
-    # ----- Read-only access to attributes -----
+    # Read-only access to attributes 
     @property
     def download_size(self) -> float:
         return self.__download_size
 
-    # ----- Extended methods -----
+    # Extended methods
 
     def display_information(self) -> None:
         super().display_information()
@@ -28,6 +28,6 @@ class DigitalProduct(Product):
         data["download_size"] = self.__download_size
         return data
 
-    # ----- Abstract method -----
+    # Abstract method
     def get_fulfilment_info(self) -> str:
         return "This product is delivered digitally via download link."

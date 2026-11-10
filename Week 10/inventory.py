@@ -2,15 +2,11 @@ from product import Product
 
 LINE = "-" * 48
 
-
-# SRP: An Inventory is responsible for managing a collection of Products.
 # AGGREGATION: an Inventory holds references to Products but does not create them
-# or control their lifecycle. A Product can exist before it is added, can be removed,
-# and can be added to another Inventory without being destroyed.
 class Inventory:
 
     def __init__(self) -> None:
-        # Typed with the base class Product so it can hold ANY kind of product (LSP).
+        # Typed with the base class Product thus can hold ANY kind of product (LSP).
         self.__products: list[Product] = []
 
     @property
@@ -25,7 +21,7 @@ class Inventory:
         return True
 
     def remove_product(self, product_id: str) -> bool:
-        # Only removes the reference from this Inventory. The Product object lives on.
+        # Only removes the reference from this Inventory
         product = self.find_product(product_id)
         if product is None:
             return False

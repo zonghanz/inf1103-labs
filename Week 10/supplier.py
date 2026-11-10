@@ -2,16 +2,14 @@ LINE = "-" * 48
 
 
 class Supplier:
-    # Represents a single supplier (SRP: one supplier's details).
-    # ASSOCIATION: a Supplier exists on its own. Products only keep a reference to it,
-    # they do not own it, and a Supplier does not need to know about its Products.
+    # ASSOCIATION: Products only keep a reference to it,
 
     def __init__(self, supplier_id: str, name: str, contact_email: str) -> None:
         self.__supplier_id: str = supplier_id           # attributes
         self.__name: str = name
         self.__contact_email: str = contact_email
 
-    # ----- Read-only access to attributes -----
+    # Read-only access to attributes
     @property
     def supplier_id(self) -> str:
         return self.__supplier_id
@@ -24,7 +22,7 @@ class Supplier:
     def contact_email(self) -> str:
         return self.__contact_email
 
-    # ----- Behaviour -----
+    #  methods 
     def display_information(self) -> None:
         print(f"Supplier ID: {self.__supplier_id}")
         print(f"Supplier Name: {self.__name}")

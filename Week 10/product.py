@@ -4,9 +4,7 @@ from supplier import Supplier
 
 
 class Product(ABC):
-    # Represents and manages a single product (SRP: one product's data and state).
     # ASSOCIATION: a Product holds a reference to the Supplier that supplied it.
-    # The Supplier is created independently and passed in. Product does not own it.
 
     def __init__(self, product_id: str, name: str, price: float,
                  stock: int, supplier: Supplier) -> None:
@@ -16,7 +14,7 @@ class Product(ABC):
         self.__stock: int = stock
         self.__supplier: Supplier = supplier
 
-    # ----- Read-only access to attributes -----
+    # Read-only access to attributes 
     @property
     def product_id(self) -> str:
         return self.__product_id
@@ -37,10 +35,9 @@ class Product(ABC):
     def supplier(self) -> Supplier:
         return self.__supplier
 
-    # ----- Behaviour -----
-    # Expectation set by Product (LSP): a valid quantity (>= 0) replaces the stock,
-    # a negative quantity raises ValueError and leaves the stock unchanged.
-    # PhysicalProduct and DigitalProduct inherit this without changing its meaning.
+    # Behaviour
+    # a valid quantity (>= 0) replaces the stock,
+    # PhysicalProduct and DigitalProduct inherits without changing its meaning.
     def update_stock(self, quantity: int) -> None:
         if quantity < 0:
             raise ValueError("Stock cannot be negative.")
@@ -55,7 +52,7 @@ class Product(ABC):
         print(f"Supplier: {self.__supplier.name} ({self.__supplier.supplier_id})")
 
     def display_supplier_information(self) -> None:
-        # Delegates to the Supplier: the Product asks the Supplier to describe itself.
+        # Product asks the Supplier to describe itself.
         self.__supplier.display_information()
 
     def to_dict(self) -> dict[str, str | int | float]:
@@ -64,7 +61,7 @@ class Product(ABC):
                 "price": self.__price, "stock": self.__stock,
                 "supplier_id": self.__supplier.supplier_id}
 
-    # ----- Abstract behaviour: every subclass MUST implement this -----
+    # Abstract behaviour: every subclass MUST implement this 
     @abstractmethod
     def get_fulfilment_info(self) -> str:
         pass

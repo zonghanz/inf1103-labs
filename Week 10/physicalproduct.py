@@ -13,12 +13,12 @@ class PhysicalProduct(Product, CanBeShipped):
         super().__init__(product_id, name, price, stock, supplier)
         self.__weight: float = weight
 
-    # ----- Read-only access to attributes -----
+    # Read-only access to attributes
     @property
     def weight(self) -> float:
         return self.__weight
 
-    # ----- Extended methods -----
+    # Extended methods
 
     def display_information(self) -> None:
         super().display_information()
@@ -31,7 +31,7 @@ class PhysicalProduct(Product, CanBeShipped):
         data["weight"] = self.__weight
         return data
 
-    # ----- Abstract method -----
+    # Abstract method
     def get_fulfilment_info(self) -> str:
         return "This product requires physical shipping."
 

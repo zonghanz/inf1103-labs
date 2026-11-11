@@ -22,7 +22,7 @@ class PhysicalProduct(Product, CanBeShipped):
 
     def display_information(self) -> None:
         super().display_information()
-        print(f"Weight: {self.__weight}")
+        print(f"Weight: {self.__weight}") # polymorphism
         print(LINE)
 
     def to_dict(self) -> dict[str, str | int | float]:

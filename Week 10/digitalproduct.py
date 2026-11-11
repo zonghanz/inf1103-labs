@@ -19,7 +19,7 @@ class DigitalProduct(Product):
 
     def display_information(self) -> None:
         super().display_information()
-        print(f"Download Size: {self.__download_size}MB")
+        print(f"Download Size: {self.__download_size}MB") # polymorphism
         print(LINE)
 
     def to_dict(self) -> dict[str, str | int | float]:

@@ -6,7 +6,7 @@ LINE = "-" * 48
 class Inventory:
 
     def __init__(self) -> None:
-        # Typed with the base class Product thus can hold ANY kind of product (LSP).
+        # Typed with the base class Product
         self.__products: list[Product] = []
 
     @property

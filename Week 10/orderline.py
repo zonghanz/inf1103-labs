@@ -3,9 +3,7 @@ from product import Product
 
 class OrderLine:
     # One product and the quantity of it requested in ONE order.
-    # COMPOSITION: an OrderLine is part of an Order. It is created by Order.add_order_line()
-    # and is never created elsewhere or moved to another Order.
-    # ASSOCIATION: the OrderLine only refers to its Product. It does not own the Product.
+    # COMPOSITION: an OrderLine is part of an Order. ASSOCIATION: the OrderLine only refers to its Product
 
     def __init__(self, product: Product, quantity: int) -> None:
         if quantity <= 0:
@@ -13,7 +11,7 @@ class OrderLine:
         self.__product: Product = product
         self.__quantity: int = quantity
 
-    # ----- Read-only access to attributes -----
+    # Read-only access to attributes 
     @property
     def product(self) -> Product:
         return self.__product
@@ -22,7 +20,7 @@ class OrderLine:
     def quantity(self) -> int:
         return self.__quantity
 
-    # ----- Behaviour -----
+    # Behaviour 
     def calculate_subtotal(self) -> float:
         return self.__product.price * self.__quantity
 

@@ -8,6 +8,11 @@ class Product(ABC):
 
     def __init__(self, product_id: str, name: str, price: float,
                  stock: int, supplier: Supplier) -> None:
+        # VALIDATION: Product owns these rules, so every subclass gets them through super().__init__()
+        if price <= 0:
+            raise ValueError("Price must be greater than zero.")
+        if stock < 0:
+            raise ValueError("Stock cannot be negative.")
         self.__product_id: str = product_id             # attributes
         self.__name: str = name
         self.__price: float = price

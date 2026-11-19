@@ -8,9 +8,8 @@ from nodiscount import NoDiscount
 from percentagediscount import PercentageDiscount
 from bulkdiscount import BulkDiscount
 from studentdiscount import StudentDiscount
-from physicalproduct import PhysicalProduct
-from digitalproduct import DigitalProduct
 from product import Product
+from productfactory import ProductFactory
 from supplier import Supplier
 from canbeshipped import CanBeShipped
 
@@ -22,20 +21,16 @@ DEFAULT_SUPPLIER = Supplier("S000", "Unknown Supplier", "not-provided@example.co
 
 # ===== Product creation from saved data =====
 def product_from_dict(item: dict, suppliers: dict[str, Supplier]) -> Product:
-    # Uses the "type" identifier to build the correct subclass, and the saved
-    # supplier_id to look up the (already existing) Supplier object.
-    kind = item["type"]
+    # Looks up the (already existing) Supplier from the saved supplier_id, then
+    # asks the ProductFactory to build the correct subclass from the "type" identifier.
     supplier_id = item.get("supplier_id", DEFAULT_SUPPLIER.supplier_id)
     if supplier_id == DEFAULT_SUPPLIER.supplier_id:
         suppliers.setdefault(supplier_id, DEFAULT_SUPPLIER)
     supplier = suppliers[supplier_id]
-    if kind == "physical":
-        return PhysicalProduct(item["id"], item["name"], item["price"],
-                               item["stock"], supplier, item["weight"])
-    if kind == "digital":
-        return DigitalProduct(item["id"], item["name"], item["price"],
-                              item["stock"], supplier, item["download_size"])
-    raise ValueError(f"Unknown product type: {kind}")
+    return ProductFactory.create(item["type"], item["id"], item["name"], item["price"],
+                                 item["stock"], supplier,
+                                 weight=item.get("weight", 0.0),
+                                 download_size=item.get("download_size", 0.0))
 
 
 # ===== File Handling =====
@@ -124,10 +119,12 @@ def add_product(inventory: Inventory, suppliers: dict[str, Supplier]) -> None:
     print("Product type:")
     print("1. Physical")
     print("2. Digital")
-    product_type = input("Choose type (1/2): ").strip()
-    if product_type not in ("1", "2"):
+    type_choice = input("Choose type (1/2): ").strip()
+    product_types = {"1": "physical", "2": "digital"}
+    if type_choice not in product_types:
         print("Invalid product type. Product not added.")
         return
+    product_type = product_types[type_choice]
 
     product_id = input("Product ID: ").strip().upper()
     if not product_id:
@@ -140,17 +137,18 @@ def add_product(inventory: Inventory, suppliers: dict[str, Supplier]) -> None:
     if not name:
         print("Product name cannot be empty.")
         return
+    weight, download_size = 0.0, 0.0
     try:
         price = float(input("Price: "))
         stock = int(input("Stock Quantity: "))
-        if product_type == "1":
-            extra = float(input("Weight (kg): "))
+        if product_type == "physical":
+            weight = float(input("Weight (kg): "))
         else:
-            extra = float(input("Download size (MB): "))
+            download_size = float(input("Download size (MB): "))
     except ValueError:
         print("Invalid number entered. Product not added.")
         return
-    if price < 0 or stock < 0 or extra < 0:
+    if price < 0 or stock < 0 or weight < 0 or download_size < 0:
         print("Values cannot be negative! Product not added.")
         return
 
@@ -159,10 +157,9 @@ def add_product(inventory: Inventory, suppliers: dict[str, Supplier]) -> None:
         print("Product not added.")
         return
 
-    if product_type == "1":
-        product = PhysicalProduct(product_id, name, price, stock, supplier, extra)
-    else:
-        product = DigitalProduct(product_id, name, price, stock, supplier, extra)
+    # The factory decides which subclass to create; main only knows about Product.
+    product = ProductFactory.create(product_type, product_id, name, price, stock,
+                                    supplier, weight=weight, download_size=download_size)
     inventory.add_product(product)
     print("Product added successfully!")
 

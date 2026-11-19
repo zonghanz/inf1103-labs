@@ -56,6 +56,15 @@
             "supplier_id": "S002",
             "type": "digital",
             "download_size": 35.5
+        },
+        {
+            "id": "P006",
+            "name": "Guitar",
+            "price": 111.0,
+            "stock": 1,
+            "supplier_id": "S002",
+            "type": "physical",
+            "weight": 10.0
         }
     ]
 }
